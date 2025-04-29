@@ -1,0 +1,19 @@
+name: Blue-Green Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  switch-traffic: # 블루-그린 배포 트래픽 전환 작업
+    runs-on: self-hosted # 자체 호스팅된 러너를 사용합니다.
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Switch Traffic
+        run: |
+          chmod +x ./switch.sh
+          ./switch.sh green
