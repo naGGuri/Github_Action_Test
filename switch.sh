@@ -7,9 +7,9 @@ if [ "$TARGET" != "blue" ] && [ "$TARGET" != "green" ]; then
   exit 1
 fi
 
-echo "🔄 Switching traffic to $TARGET... (zero-downtime with volume mount)"
+echo "🔄 Switching traffic to $TARGET... (restart proxy container)"
 
-# 1. proxy/nginx.conf 파일 직접 수정
+# 1. proxy/nginx.conf 파일 수정
 cat <<EOCONF > proxy/nginx.conf
 events {}
 
@@ -28,6 +28,7 @@ http {
 }
 EOCONF
 
-docker exec proxy nginx -s reload # soft reload
+# 2. proxy 컨테이너만 다시 시작
+docker compose restart proxy
 
-echo "✅ Traffic now going to $TARGET (with updated nginx.conf)"
+echo "✅ Traffic now going to $TARGET"
