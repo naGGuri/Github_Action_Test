@@ -1,0 +1,12 @@
+﻿{
+  "repositoryName": "naGGuri/Github_Action_Test",
+  "pipelineDirectory": "Github_Action_Test",
+  "workspaceDirectory": "Github_Action_Test/Github_Action_Test",
+  "repositories": {
+    "naGGuri/Github_Action_Test": {
+      "repositoryPath": "Github_Action_Test/Github_Action_Test",
+      "lastRunOn": "04/29/2025 17:35:01 +09:00"
+    }
+  },
+  "lastRunOn": "04/29/2025 17:35:02 +09:00"
+}

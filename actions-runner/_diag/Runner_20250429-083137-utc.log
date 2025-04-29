@@ -121,3 +121,47 @@
 [2025-04-29 08:31:41Z INFO JobDispatcher] Set runner/worker IPC timeout to 30 seconds.
 [2025-04-29 08:31:41Z INFO RSAFileKeyManager] Loading RSA key parameters from file /Users/naheesu/Documents/KakaoCloudBootcamp/blue_green_deploy/actions-runner/.credentials_rsaparams
 [2025-04-29 08:31:43Z INFO GitHubActionsService] AAD Correlation ID for this token request: Unknown
+[2025-04-29 08:34:58Z INFO MessageListener] Message '5768802189636450478' received from session 'f360e587-6228-4555-ba13-0dafe7f15419'.
+[2025-04-29 08:34:58Z INFO ConfigurationStore] HasCredentials()
+[2025-04-29 08:34:58Z INFO ConfigurationStore] stored True
+[2025-04-29 08:34:58Z INFO CredentialManager] GetCredentialProvider
+[2025-04-29 08:34:58Z INFO CredentialManager] Creating type OAuth
+[2025-04-29 08:34:58Z INFO CredentialManager] Creating credential type: OAuth
+[2025-04-29 08:34:58Z INFO RSAFileKeyManager] Loading RSA key parameters from file /Users/naheesu/Documents/KakaoCloudBootcamp/blue_green_deploy/actions-runner/.credentials_rsaparams
+[2025-04-29 08:34:58Z INFO RSAFileKeyManager] Loading RSA key parameters from file /Users/naheesu/Documents/KakaoCloudBootcamp/blue_green_deploy/actions-runner/.credentials_rsaparams
+[2025-04-29 08:34:58Z INFO RSAFileKeyManager] Loading RSA key parameters from file /Users/naheesu/Documents/KakaoCloudBootcamp/blue_green_deploy/actions-runner/.credentials_rsaparams
+[2025-04-29 08:34:58Z INFO GitHubActionsService] AAD Correlation ID for this token request: Unknown
+[2025-04-29 08:35:00Z INFO JobDispatcher] Job request 0 for plan 89eb8a57-9f43-4418-bc0a-605e6860fc01 job 7c598c20-0609-5268-86dd-ad3eaddbc41d received.
+[2025-04-29 08:35:00Z INFO MessageListener] Received job status event. JobState: Busy
+[2025-04-29 08:35:00Z INFO MessageListener] _getMessagesTokenSource is already disposed.
+[2025-04-29 08:35:00Z INFO Terminal] WRITE LINE: 2025-04-29 08:35:00Z: Running job: switch-traffic
+[2025-04-29 08:35:00Z INFO JobDispatcher] Start renew job request 0 for job 7c598c20-0609-5268-86dd-ad3eaddbc41d.
+[2025-04-29 08:35:01Z INFO JobDispatcher] Successfully renew job 7c598c20-0609-5268-86dd-ad3eaddbc41d, job is valid till 2025. 4. 29. 오전 8:45:01
+[2025-04-29 08:35:01Z INFO HostContext] Well known directory 'Bin': '/Users/naheesu/Documents/KakaoCloudBootcamp/blue_green_deploy/actions-runner/bin'
+[2025-04-29 08:35:01Z INFO ProcessInvokerWrapper] Starting process:
+[2025-04-29 08:35:01Z INFO ProcessInvokerWrapper]   File name: '/Users/naheesu/Documents/KakaoCloudBootcamp/blue_green_deploy/actions-runner/bin/Runner.Worker'
+[2025-04-29 08:35:01Z INFO ProcessInvokerWrapper]   Arguments: 'spawnclient 150 153'
+[2025-04-29 08:35:01Z INFO ProcessInvokerWrapper]   Working directory: '/Users/naheesu/Documents/KakaoCloudBootcamp/blue_green_deploy/actions-runner/bin'
+[2025-04-29 08:35:01Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2025-04-29 08:35:01Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2025-04-29 08:35:01Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'True'
+[2025-04-29 08:35:01Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2025-04-29 08:35:01Z INFO ProcessInvokerWrapper]   Persist current code page: 'False'
+[2025-04-29 08:35:01Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2025-04-29 08:35:01Z INFO ProcessInvokerWrapper]   High priority process: 'True'
+[2025-04-29 08:35:01Z INFO ProcessInvokerWrapper] Process started with process id 64852, waiting for process exit.
+[2025-04-29 08:35:01Z INFO JobDispatcher] Send job request message to worker for job 7c598c20-0609-5268-86dd-ad3eaddbc41d.
+[2025-04-29 08:35:01Z INFO ProcessChannel] Sending message of length 18643, with hash 'fd53e0b2a1d47e58ef720ca495ed3fd3dab284b689fc112b73646cdd83a2d256'
+[2025-04-29 08:35:01Z INFO JobNotification] Entering JobStarted Notification
+[2025-04-29 08:35:01Z INFO JobNotification] Entering StartMonitor
+[2025-04-29 08:35:23Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-04-29 08:35:23Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-04-29 08:35:23Z INFO ProcessInvokerWrapper] Finished process 64852 with exit code 100, and elapsed time 00:00:22.0792970.
+[2025-04-29 08:35:23Z INFO JobDispatcher] Worker finished for job 7c598c20-0609-5268-86dd-ad3eaddbc41d. Code: 100
+[2025-04-29 08:35:23Z INFO JobDispatcher] finish job request for job 7c598c20-0609-5268-86dd-ad3eaddbc41d with result: Succeeded
+[2025-04-29 08:35:23Z INFO Terminal] WRITE LINE: 2025-04-29 08:35:23Z: Job switch-traffic completed with result: Succeeded
+[2025-04-29 08:35:23Z INFO JobDispatcher] Stop renew job request for job 7c598c20-0609-5268-86dd-ad3eaddbc41d.
+[2025-04-29 08:35:23Z INFO JobDispatcher] job renew has been cancelled, stop renew job 7c598c20-0609-5268-86dd-ad3eaddbc41d.
+[2025-04-29 08:35:23Z INFO JobNotification] Entering JobCompleted Notification
+[2025-04-29 08:35:23Z INFO JobNotification] Entering EndMonitor
+[2025-04-29 08:35:23Z INFO MessageListener] Received job status event. JobState: Online

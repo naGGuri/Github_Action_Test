@@ -28,7 +28,6 @@ http {
 }
 EOCONF
 
-# 2. proxy 컨테이너 재시작 (docker compose restart proxy)
-docker compose restart proxy
+docker exec proxy nginx -s reload # soft reload
 
 echo "✅ Traffic now going to $TARGET (with updated nginx.conf)"
