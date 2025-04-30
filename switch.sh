@@ -9,20 +9,14 @@ GREEN='\033[1;32m'
 RED='\033[1;31m'
 NC='\033[0m'
 
-# Health Check: docker network 상의 서비스명 기준
+# Health Check: 서비스명 기준
 function health_check() {
   local service=$1
-  local port
+  echo "🔎 Health Check: $service (docker network)"
 
-  if [ "$service" == "blue" ]; then
-    port=8081
-  else
-    port=8082
-  fi
+  http_code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 2 http://$service:80/)
+  echo "[디버그] HTTP 응답 코드: $http_code"
 
-  echo "🔎 Health Check: $service (localhost:$port)"
-
-  http_code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 2 http://localhost:$port/)
   if [ "$http_code" == "200" ]; then
     echo -e "${GREEN}✅ $service 응답 확인 성공 (HTTP 200)${NC}"
     return 0
@@ -45,7 +39,7 @@ if [ "$TARGET" != "blue" ] && [ "$TARGET" != "green" ]; then
   exit 1
 fi
 
-# Health Check 먼저
+# Health Check
 if ! health_check "$TARGET"; then
   echo -e "${RED}🛑 전환 중단: $TARGET 서비스가 정상적으로 응답하지 않습니다.${NC}"
   exit 1

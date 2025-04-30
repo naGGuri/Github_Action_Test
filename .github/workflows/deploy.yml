@@ -22,7 +22,8 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
+          NOW=$(date '+%Y-%m-%d %H:%M:%S')
           curl -s -X POST -H 'Content-type: application/json' --data "{
-            \"text\": \"📦 *Blue-Green 배포 완료*\n🔄 트래픽 전환 대상: *green*\n✅ 시각: $(date '+%Y-%m-%d %H:%M:%S')\"
+            \"text\": \"📦 *Blue-Green 배포 완료*\n🔄 트래픽 전환 대상: *green*\n✅ 시각: $NOW\"
           }" \"$SLACK_WEBHOOK_URL\"
 
