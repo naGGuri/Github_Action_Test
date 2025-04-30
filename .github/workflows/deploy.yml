@@ -16,4 +16,4 @@ jobs:
       - name: Switch Traffic
         run: |
           chmod +x ./switch.sh
-          ./switch.sh green
+          ./switch.sh blue
