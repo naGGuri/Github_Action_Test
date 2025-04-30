@@ -9,7 +9,12 @@ GREEN='\033[1;32m'
 RED='\033[1;31m'
 NC='\033[0m'
 
-# Health Check: 서비스명 기준
+# 환경 변수 파일 로드 (필요한 경우)
+if [ -f .env ]; then
+  source .env
+fi
+
+# Health Check
 function health_check() {
   local service=$1
   local port
@@ -33,14 +38,14 @@ function health_check() {
   fi
 }
 
-# 트래픽 상태 확인
+# 현재 상태 출력
 if [ "$TARGET" == "status" ]; then
   CURRENT=$(awk '/upstream app_servers/,/}/ { if ($1 == "server") print $2 }' "$NGINX_CONF_PATH" | cut -d: -f1 | tr -d ';')
   echo -e "🔍 현재 트래픽 대상: ${BLUE}${CURRENT}${NC}"
   exit 0
 fi
 
-# 입력값 검사
+# 인자 확인
 if [ "$TARGET" != "blue" ] && [ "$TARGET" != "green" ]; then
   echo "Usage: $0 {blue|green|status}"
   exit 1
@@ -54,7 +59,7 @@ fi
 
 echo "🔄 Switching traffic to $TARGET..."
 
-# nginx.conf 재생성
+# nginx.conf 덮어쓰기
 cat <<EOCONF > "$NGINX_CONF_PATH"
 events {}
 
@@ -73,8 +78,19 @@ http {
 }
 EOCONF
 
-# proxy 컨테이너 재시작
+# proxy 재시작
 docker compose restart proxy
 
 echo -e "✅ 트래픽이 ${BLUE}$TARGET${NC} 으로 전환되었습니다."
+
+# Slack 알림 전송
+if [ -n "$SLACK_WEBHOOK_URL" ]; then
+  NOW=$(date '+%Y-%m-%d %H:%M:%S')
+  curl -s -X POST -H 'Content-type: application/json' --data "{
+    \"text\": \"📦 *Blue-Green 배포 완료*\n🔄 트래픽 전환 대상: *$TARGET*\n✅ 시각: $NOW\"
+  }" "$SLACK_WEBHOOK_URL" > /dev/null
+  echo -e "${GREEN}📨 Slack 알림 전송 완료${NC}"
+else
+  echo -e "${RED}⚠️ SLACK_WEBHOOK_URL 환경변수가 설정되지 않았습니다. 알림 건너뜁니다.${NC}"
+fi
 

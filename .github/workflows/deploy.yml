@@ -14,19 +14,9 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run switch.sh (green으로 전환)
-        run: |
-          chmod +x ./switch.sh
-          ./switch.sh green
-
-      - name: Send Slack notification
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
-          NOW=$(date '+%Y-%m-%d %H:%M:%S')
-          curl -s -X POST -H 'Content-type: application/json' \
-            --data @- "$SLACK_WEBHOOK_URL" <<EOF
-{
-  "text": "📦 *Blue-Green 배포 완료*\n🔄 트래픽 전환 대상: *green*\n✅ 시각: $NOW"
-}
-EOF
+          chmod +x ./switch.sh
+          ./switch.sh green
 
