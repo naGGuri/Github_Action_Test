@@ -6,14 +6,23 @@ on:
       - main
 
 jobs:
-  switch-traffic: # 블루-그린 배포 트래픽 전환 작업
-    runs-on: self-hosted # 자체 호스팅된 러너를 사용합니다.
+  switch-traffic:
+    runs-on: self-hosted
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Switch Traffic
+      - name: Run switch.sh (green으로 전환)
         run: |
           chmod +x ./switch.sh
           ./switch.sh green
+
+      - name: Send Slack notification
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          curl -s -X POST -H 'Content-type: application/json' --data "{
+            \"text\": \"📦 *Blue-Green 배포 완료*\n🔄 트래픽 전환 대상: *green*\n✅ 시각: $(date '+%Y-%m-%d %H:%M:%S')\"
+          }" \"$SLACK_WEBHOOK_URL\"
+
