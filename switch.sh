@@ -12,13 +12,22 @@ NC='\033[0m'
 # Health Check: docker network 상의 서비스명 기준
 function health_check() {
   local service=$1
-  echo "🔎 Health Check: $service (docker network)"
+  local port
 
-  if curl -s --max-time 2 http://$service:80/ | grep -q 'html'; then
-    echo -e "${GREEN}✅ $service 응답 확인 성공${NC}"
+  if [ "$service" == "blue" ]; then
+    port=8081
+  else
+    port=8082
+  fi
+
+  echo "🔎 Health Check: $service (localhost:$port)"
+
+  http_code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 2 http://localhost:$port/)
+  if [ "$http_code" == "200" ]; then
+    echo -e "${GREEN}✅ $service 응답 확인 성공 (HTTP 200)${NC}"
     return 0
   else
-    echo -e "${RED}❌ $service 응답 실패${NC}"
+    echo -e "${RED}❌ $service 응답 실패 (code: $http_code)${NC}"
     return 1
   fi
 }
